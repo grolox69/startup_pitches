@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block results %}
+    <div class="container">
+        <h1>RESULTS</h1>
+        <div class="row">
+            {% for pitch in pitch_list %}
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    {% if pitch.image_file %}
+                        <div class="img-container">
+                            <a href="{% url 'pitch_detail' pitch.pk %}"><img src="{{ pitch.image_file.url }}"></a>
+                        </div>
+                    {% else %}
+                        <h2><a href="{% url 'pitch_detail' pitch.pk %}">{{ pitch.name }}</a></h2>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock results %}

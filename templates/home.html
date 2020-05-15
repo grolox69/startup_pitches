@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block posts %}
+    <div class="container">
+
+
+        <div class="my-form">
+            <div class=" h-100">
+              <div class="d-flex justify-content-center h-100">
+              <form action="{% url 'pitch_results' %}" method="get">
+                <div class="searchbar ">
+                  <input class="search_input" type="text" name="q" placeholder="Search for Music, Artists, Profiles ...">
+                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
+              </form>
+              </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            {% for post in object_list %}
+                <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
+                    {% if post.image_file %}
+                        <div class="img-container">
+                            <a href="{% url 'pitch_detail' post.pk %}"><img src="{{ post.image_file.url }}"></a>
+                        </div>
+                    {% else %}
+                        <h2><a href="{% url 'pitch_detail' post.pk %}">{{ post.name }}</a></h2>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock posts %}
